@@ -94,10 +94,10 @@ void Chat::showChat() const
 
 	for (auto& mess : _messageList)
 	{
-		//показываем сообщения: от текущего пользователя, для него и для всех
+		//show message: from current user, for current user and for all users
 		if (_currentUser->getUserLogin() == mess.getFrom() || _currentUser->getUserLogin() == mess.getTo() || mess.getTo() == "all")
 		{
-			//подменяем для себя имя на me
+			//changing our name to "me" for ourself
 			from = (_currentUser->getUserLogin() == mess.getFrom()) ? "me" : getUserByLogin(mess.getFrom())->getUserName();
 
 			if (mess.getTo() == "all")
@@ -212,7 +212,7 @@ void Chat::addMessage()
 	std::cin.ignore();
 	getline(std::cin, text);
 
-	if (!(to == "all" || getUserByName(to)))  //если не удалось найти получателя по имени
+	if (!(to == "all" || getUserByName(to)))  //if failed to find the recipient by name
 	{
 		std::cout << "error send message: can't find " << std::endl;
 		return;
